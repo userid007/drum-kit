@@ -1,1 +1,1 @@
-"# drum-kit" 
+Simple drum kit with sound
