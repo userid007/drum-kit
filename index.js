@@ -1,21 +1,15 @@
 for (let i = 0; i < document.querySelectorAll(".drum").length; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
         let clickpress = this.innerHTML;
-        document.querySelector("." + clickpress).style.color = "white";
         makeSound(clickpress);
-        setTimeout(function () {
-            document.querySelector("." + clickpress).style.color = "#da0463";
-        }, 100);
+        buttonAnimation(clickpress);
     });
 }
 
 document.addEventListener("keydown", function (event) {
     let keypress = event.key;
     makeSound(keypress);
-    document.querySelector("." + keypress).style.color = "white";
-    window.setTimeout(function () {
-        document.querySelector("." + keypress).style.color = "#da0463";
-    }, 100);
+    buttonAnimation(keypress);
 });
 
 function makeSound(key) {
@@ -58,4 +52,16 @@ function makeSound(key) {
         default:
             console.log(this.innerHTML);
     }
+}
+
+function buttonAnimation(currentKey) {
+    let activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed");
+    activeButton.style.color = "white";
+
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+        activeButton.style.color = "#da0463"
+    },100)
 }
